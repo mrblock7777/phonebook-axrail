@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import List from './pages/List'
 import Create from './pages/Create'
 import axios from 'axios'
 import './App.css'
 
-axios.defaults.baseURL = 'http://localhost:7000';
+//Set proxy for axios to the backend
+axios.defaults.baseURL = 'https://phonebook-axrail-api.herokuapp.com/';
 
 
 function App() {

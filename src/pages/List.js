@@ -50,7 +50,7 @@ export default function List() {
                     data.no = index + 1;
                     return data
                 })
-                setPhonebook(response.data);
+                setPhonebook(list);
             }
         }
         if (isMounted) {
