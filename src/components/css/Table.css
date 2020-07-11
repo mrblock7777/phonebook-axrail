@@ -1,0 +1,14 @@
+.table{
+    width: 100%;
+}
+.table tr td{
+    text-align: center;
+}
+.table tr td, .table tr th{
+    padding: 10px 0;
+    border-bottom: rgb(206, 206, 206) 1px solid;
+}
+.danger{
+    background-color: #a4262c;
+    color: white;
+}
