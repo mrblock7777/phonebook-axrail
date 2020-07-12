@@ -4,13 +4,29 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import '../assets/css/List.css'
 
+function ButtonTypes({row}){
+    switch(row.type){
+        case 'link':
+            return (
+                <Link to={row.to}>
+                    <DefaultButton>
+                        {row.name}
+                    </DefaultButton>
+                </Link>
+            )
+        default:
+            return(
+                <DefaultButton onClick={() => row.action(row._id)} className={'btn btn-' + row.color}>
+                    {row.name}
+                </DefaultButton>
+            )
+    }
+}
 function renderItem(row, index, column) {
     switch (column.type) {
         case 'action':
             return row[column.fieldName].map(action => (
-                <DefaultButton onClick={() => action.action(row._id)} key={action.name} className={'btn btn-' + action.color}>
-                    {action.name}
-                </DefaultButton>
+                <ButtonTypes row={action} key={action.name}/>
             ))
         default:
             return <>{row[column.fieldName]}</>
@@ -30,20 +46,22 @@ function ListTable({ phonebook, isLoading }) {
             key: 'name',
             fieldName: 'name',
             name: 'Name',
-            minWidth: 50,
-            maxWidth: 1000,
+            // minWidth: 50,
+            maxWidth: 100,
             isResizable: true,
         },
         {
             key: 'number',
             fieldName: 'phone_number',
             name: 'Phone Number',
+            maxWidth: 100,
             isResizable: true,
         },
         {
             key: 'action',
             type: 'action',
             fieldName: 'action',
+            minWidth: 100,
             name: 'Action',
         },
     ]
@@ -108,10 +126,17 @@ export default function List() {
                             {
                                 name: 'Delete',
                                 color: 'danger',
+                                type: 'button',
                                 action: () => {
                                     setCurrentId(data._id);
                                     setDialog({ ...dialog, delDialog: { show: true } })
                                 }
+                            },
+                            {
+                                name: 'Edit',
+                                type: 'link',
+                                color: 'warning',
+                                to: '/edit/' + data._id
                             }
                         ]
                     }

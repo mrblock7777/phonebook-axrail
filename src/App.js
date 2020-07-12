@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import List from './pages/List'
 import Create from './pages/Create'
+import Edit from './pages/Edit'
 import { initializeIcons } from '@uifabric/icons'
 import axios from 'axios'
 import './App.css'
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/create">
             <Create />
+          </Route>
+          <Route path="/edit/:id">
+            <Edit />
           </Route>
         </Switch>
       </div>
