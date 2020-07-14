@@ -15,7 +15,7 @@ initializeIcons();
 
 function App() {
   return (
-    <Router>
+    <Router id="test">
       <div className="container">
         <Switch>
           <Route exact path="/">
